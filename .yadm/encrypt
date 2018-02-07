@@ -1,0 +1,3 @@
+.config/taskwarrior/private.key.pem
+.config/taskwarrior/ca.cert.pem
+.config/taskwarrior/private.certificate.pem

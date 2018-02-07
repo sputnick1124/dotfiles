@@ -1,0 +1,3 @@
+dunst -conf ~/.dunstrc &
+~/.fehbg
+i3

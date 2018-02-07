@@ -1,0 +1,44 @@
+#!/bin/bash
+
+declare -a HOUR_NAMES=(
+    "one"
+    "two"
+    "three"
+    "four"
+    "five"
+    "six"
+    "seven"
+    "eight"
+    "nine"
+    "ten"
+    "eleven"
+    "twelve"
+    )
+
+declare -a FUZZY_MSG=(
+    "%s o' clock"
+    "quarter past %s"
+    "half past %s"
+    "quarter to %s"
+    )
+
+HOUR=$(date +%l)
+MIN=$(date +%M)
+
+if (( $MIN > 8 )) ; then
+    FUZZY_IND=$(( (($MIN-9)/15 + 1) ))
+else
+    FUZZY_IND=0
+fi
+
+if (( $FUZZY_IND > 2 )) ; then
+    HOUR_IND=$(( $HOUR + 1 ))
+else
+    HOUR_IND=$(( $HOUR ))
+fi
+HOUR_IND=$(( ($HOUR_IND-1) % 12 ))
+
+FUZZY_IND=$(( $FUZZY_IND % 4 ))
+
+printf "${FUZZY_MSG[$FUZZY_IND]}\n" "${HOUR_NAMES[$HOUR_IND]}"
+

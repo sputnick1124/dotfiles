@@ -1,0 +1,10 @@
+#!/bin/bash
+DATE=$(date '+%A %B %d, %Y')
+
+
+
+case $BLOCK_BUTTON in
+  1)  gsimplecal;;
+esac
+
+echo $DATE

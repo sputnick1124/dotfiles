@@ -1,0 +1,39 @@
+# wallpaper
+feh
+
+# notifications
+dunst
+
+# screen locking
+xautolock
+imagemagick
+
+# disk mounting
+udiskie
+
+# network management
+nm-applet
+
+# redshifting screen (should replace with redshift)
+fluxgui
+
+# screen compositing ('cause all the cool kids make their terminals transparent, right?)
+compton
+
+# terminal - I'm loving alacritty right now
+alacritty
+
+# status bar
+i3blocks
+
+# audio controller
+alsa-utils # provides amixer
+pavucontrol # audio mixer gui (sometimes needed to fix output device)
+
+# media keys integration
+playerctl # github.com/acrisci/playerctl
+
+# view markdown in terminal
+pandoc
+lynx
+
