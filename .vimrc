@@ -54,6 +54,9 @@ Plugin 'qpkorr/vim-bufkill'
 " indent-based folding
 Plugin 'pseewald/anyfold'
 
+" nice aligning
+Plugin 'godlygeek/tabular'
+
 " auto tag generation and management
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'majutsushi/tagbar'
@@ -70,7 +73,7 @@ Plugin 'lervag/vimtex'
 Plugin 'tpope/vim-surround'
 
 " ROS commands in vim (:Rosed, :Roscd, etc.). Also maps :make to catkin build
-Plugin 'taketwo/vim-ros'
+"Plugin 'taketwo/vim-ros'
 
 " silly sublimetext-like minimap
 Plugin 'severin-lemaignan/vim-minimap'
