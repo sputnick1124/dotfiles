@@ -47,6 +47,7 @@ bindkey '^E' end-of-line
 export XDG_CONFIG_HOME=$HOME/.config
 export EDITOR='vim'
 export PAGER='less -F'
+export GPG_TTY=$(tty)
 
 # nice, self-contained config from subnixr/minimal (with some modifications)
 source $HOME/.config/zsh/minimal.zsh
