@@ -1,1 +1,1 @@
-/home/stocktno/.config/i3/i3exit.sh##FreeBSD
+/home/stocktonno/.config/i3/i3exit.sh##

@@ -1,0 +1,27 @@
+# Not everything here is necessarily installed everywhere, so put any machine-specific
+# stuff here. 
+export WORKON_HOME=$HOME/.virtualenvs
+
+
+FZF_BIN=$HOME/.fzf/bin
+CARGO_BIN=$HOME/.cargo/bin
+LOCAL_BIN=$HOME/local/bin
+LOCAL_USR_BIN=$HOME/local/usr/bin
+DOTLOCAL_BIN=$HOME/.local/bin
+
+export VIRTUALENVWRAPPER_PYTHON=python
+source $DOTLOCAL_BIN/virtualenvwrapper.sh
+for BIN_PATH in $FZF_BIN $CARGO_BIN $LOCAL_USR_BIN $LOCAL_BIN $DOTLOCAL_BIN ; do
+    [[ ":$PATH:" != *":${BIN_PATH}:"* ]] && PATH="${BIN_PATH}:${PATH}";
+done
+
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+bindkey -s '^p' 'vim $(fzf)\n'
+
+rmd()
+{
+	pandoc -t html $1 | w3m -T text/html
+}
+
+
+
