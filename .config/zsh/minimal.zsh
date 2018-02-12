@@ -151,7 +151,7 @@ function mnml_me_dirs {
 }
 
 function mnml_me_ls {
-    if [ "$(uname)" = "Darwin" ] && ! ls --version &> /dev/null; then
+    if ([ "$(uname)" = "Darwin" ] || [ "$(uname)" = "FreeBSD" ]) && ! ls --version &> /dev/null; then
         COLUMNS=$COLUMNS CLICOLOR_FORCE=1 ls -C -G -F
     else
         ls -C -F --color="always" -w $COLUMNS
