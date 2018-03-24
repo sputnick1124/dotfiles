@@ -6,4 +6,4 @@ sub nlo2nls {
 
 $pdf_mode = 1;
 $bibtex_use = 2;
-$pdflatex = "pdflatex --shell-escape %O %S";
+$pdflatex = "pdflatex --shell-escape -synctex=1 %O %S";

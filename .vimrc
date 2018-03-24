@@ -7,6 +7,7 @@ set autoread "auto load files if they change outside of vim
 set number "show line numbers
 set cursorline "highlight current line
 set colorcolumn=110 " highlight column 110 (80 is so restrictive :) )     80 ->|<-                     110 ->|<-
+set textwidth=110 " when wrapping lines with gq, wrap to same column as above
 highlight ColorColumn ctermbg=darkgray
 set nowrap "don't wrap lines, let them run off window
 set showmatch "jump briefly to matching brace if visible
@@ -31,55 +32,60 @@ set splitright "open new vert splits to the right
 
 set tags=./tags; "search for tags from directory containing file -> upward
 
+""" Plugin management
+" autodownload vim-plug if not already
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-filetype off
-set runtimepath+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/bundle')
+
+Plug 'VundleVim/Vundle.vim'
 
 " Fuzzy finding
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 
 " comment/uncomment with <leader>c[c|u]
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 
 " filetree
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 " kill buffer, but keep splits
-Plugin 'qpkorr/vim-bufkill'
+Plug 'qpkorr/vim-bufkill'
 
 " indent-based folding
-Plugin 'pseewald/anyfold'
+Plug 'pseewald/anyfold'
 
 " nice aligning
-Plugin 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 
 " auto tag generation and management
-Plugin 'ludovicchabant/vim-gutentags'
-Plugin 'majutsushi/tagbar'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'majutsushi/tagbar'
 
 " general completion
-Plugin 'ajh17/vimcompletesme'
+Plug 'ajh17/vimcompletesme'
 
 " Python completion
-Plugin 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim'
 
 " LaTeX integration
-Plugin 'lervag/vimtex'
+Plug 'lervag/vimtex'
 " surround segments with delimiters. Useful for TeX editing
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " ROS commands in vim (:Rosed, :Roscd, etc.). Also maps :make to catkin build
-"Plugin 'taketwo/vim-ros'
+"Plug 'taketwo/vim-ros'
 
 " silly sublimetext-like minimap
-Plugin 'severin-lemaignan/vim-minimap'
+Plug 'severin-lemaignan/vim-minimap'
 
-call vundle#end()
-filetype plugin indent on
+call plug#end()
 
 """Plugin-specific configurations
 
@@ -92,7 +98,7 @@ highlight Folded ctermbg=None ctermfg=White cterm=underline
 map <F8> :TagbarToggle<cr>
 
 "" nerdtree
-nmap <C-f> :NERDTreeToggle<cr>
+nmap <F5> :NERDTreeToggle<cr>
 
 "" vim completes me
 let b:vcm_tab_complete = 'tags' "look for completions in tags files
@@ -120,14 +126,25 @@ augroup VimCompletesMeTex
     autocmd FileType tex
                 \ let anyfold_activate = 0
     autocmd FileType tex
-                \ let g:vimtex_fold_enabled
+                \ let g:vimtex_fold_enabled = 1
+    autocmd FileType tex
+                \ let g:vimtex_complete_enabled = 1
+    autocmd FileType tex
+                \ let g:vimtex_complete_close_braces = 1
 
 augroup END
+
+"" fzf
+" find files containing string
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 
 "" vim-ros
 let g:ros_make='current'
 let g:ros_build_system='catkin-tools'
 autocmd BufNewFile,BufRead *.launch setlocal ft=xml "edit launchfiles like xml
+
+"" gnuplot files formatted like sh
+autocmd BufNewFile,BufRead *.gnuplot setlocal ft=sh
 
 """ General mappings and commands
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <- line("$") | exe "normal! g`\"" | endif
