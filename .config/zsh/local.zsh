@@ -1,0 +1,1 @@
+/home/nick/.config/zsh/local.zsh##
