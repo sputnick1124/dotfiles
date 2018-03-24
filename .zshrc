@@ -21,7 +21,7 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 zstyle ':completion:*:*:kill:*:processes' command 'ps xo pid,user:10,cmd | grep -v "sshd:|-zsh$"'
-zstyle :compinstall filename '/home/nick/.zshrc'
+zstyle :compinstall filename '$HOME/.zshrc'
 
 fpath=($HOME/.config/zsh/ $fpath)
 autoload -Uz compinit
@@ -50,8 +50,8 @@ export PAGER='less -F'
 export GPG_TTY=$(tty)
 alias vim='vim --servername vim'
 
-# nice, self-contained config from subnixr/minimal (with some modifications)
-source $HOME/.config/zsh/minimal.zsh
 # machine-specific env settings are kept separate for easier management with yadm alternates
 source $HOME/.config/zsh/local.zsh
+# nice, self-contained config from subnixr/minimal (with some modifications)
+source $HOME/.config/zsh/minimal.zsh
 
