@@ -7,10 +7,10 @@ MNML_INSERT_CHAR="${MNML_INSERT_CHAR:-›}"
 MNML_NORMAL_CHAR="${MNML_NORMAL_CHAR:-·}"
 
 [ -z "$MNML_RPROMPT" ] && MNML_RPROMPT=(mnml_ssh)
-[ -z "$MNML_PROMPT" ] && MNML_PROMPT=('mnml_cwd 6 6' mnml_git mnml_status mnml_keymap)
+[ -z "$MNML_PROMPT" ] && MNML_PROMPT=('mnml_cwd 6 6'  mnml_status mnml_keymap)
 [ -z "$MNML_INFOLN" ] && MNML_INFOLN=(mnml_err mnml_jobs mnml_uhp mnml_files)
 
-[ -z "$MNML_MAGICENTER" ] && MNML_MAGICENTER=(mnml_me_dirs mnml_me_ls mnml_me_git)
+[ -z "$MNML_MAGICENTER" ] && MNML_MAGICENTER=(mnml_me_dirs mnml_me_ls )
 
 # Components
 function mnml_status {
