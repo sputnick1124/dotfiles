@@ -43,8 +43,6 @@ endif
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'VundleVim/Vundle.vim'
-
 " Fuzzy finding
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -79,6 +77,12 @@ Plug 'lervag/vimtex'
 " surround segments with delimiters. Useful for TeX editing
 Plug 'tpope/vim-surround'
 
+" repeat plugin maps with '.'
+Plug 'tpope/vim-repeat'
+
+" rust development
+Plug 'rust-lang/rust.vim'
+
 " ROS commands in vim (:Rosed, :Roscd, etc.). Also maps :make to catkin build
 "Plug 'taketwo/vim-ros'
 
@@ -91,8 +95,11 @@ call plug#end()
 
 "" folding
 let anyfold_activate=1
+set foldmethod=marker
 set foldlevel=0
-highlight Folded ctermbg=None ctermfg=White cterm=underline
+set foldcolumn=1
+highlight clear Folded
+highlight FoldColumn ctermbg=DarkGrey ctermfg=Green
 
 "" tagbar
 map <F8> :TagbarToggle<cr>
@@ -143,8 +150,12 @@ let g:ros_make='current'
 let g:ros_build_system='catkin-tools'
 autocmd BufNewFile,BufRead *.launch setlocal ft=xml "edit launchfiles like xml
 
-"" gnuplot files formatted like sh
-autocmd BufNewFile,BufRead *.gnuplot setlocal ft=sh
+"" gnuplot
+autocmd BufNewFile, BufRead *.gnuplot setlocal ft=gnuplot
+
+"" fzf
+"command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow- --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow- --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
 """ General mappings and commands
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <- line("$") | exe "normal! g`\"" | endif

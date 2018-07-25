@@ -48,7 +48,8 @@ export XDG_CONFIG_HOME=$HOME/.config
 export EDITOR='vim'
 export PAGER='less -F'
 export GPG_TTY=$(tty)
-alias vim='vim --servername vim'
+#alias vim='vim --servername vim'
+export TERM='xterm-256color'
 
 # machine-specific env settings are kept separate for easier management with yadm alternates
 source $HOME/.config/zsh/local.zsh
