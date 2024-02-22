@@ -1,1 +1,1 @@
-/home/stocktonno/.config/i3/i3exit.sh##
+i3exit.sh##default

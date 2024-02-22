@@ -1,1 +1,0 @@
-/home/stocktonno/.config/zsh/local.zsh##WORK_DT
