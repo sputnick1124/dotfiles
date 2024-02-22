@@ -1,0 +1,22 @@
+[user]
+    name = Nicklas Stockton
+    email = nicklas.stockton@gmail.com
+[alias]
+    st = status
+    br = branch
+    co = checkout
+    lol = log --oneline
+    lola = log --oneline --annotate
+    suir = submodule update --init --recursive
+    mt = mergetool
+    am = commit --amend --no-edit
+[merge]
+    tool = nvimdiff
+[mergetool]
+    prompt = false
+[pull]
+    rebase = false
+[init]
+    defaultBranch = main
+[include]
+    path = ~/.private.gitconfig
