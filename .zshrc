@@ -62,9 +62,9 @@ bindkey '^E' end-of-line
 export XDG_CONFIG_HOME=$HOME/.config
 export PAGER='less'
 export GPG_TTY=$(tty)
+export EDITOR='vim'
 
 if type nvim 2>&1 >/dev/null; then
-    export EDITOR='nvim'
     alias vim='nvim'
     alias vimdiff='nvim -d'
     export MANPAGER='nvim +Man!'
